@@ -17,7 +17,7 @@ class RRestart:
                 raise Exception
             if subprocess.call('/etc/init.d/sensu-api restart', shell=True):
                 raise Exception
-            if subprocess.Popen('/etc/init.d/sensu-server restart', shell=True):
+            if subprocess.call('/etc/init.d/sensu-server restart', shell=True):
                 raise Exception
         except Exception:
             resp.status = falcon.HTTP_500
