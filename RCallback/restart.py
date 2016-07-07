@@ -13,8 +13,11 @@ class RRestart:
         if req.params['key'] != RUtils.RConfig().restart_key:
             raise RUtils.RError(2)
         try:
-            p = subprocess.Popen(['/etc/init.d/sensu-api', 'restart'])
-            p = subprocess.Popen(['/etc/init.d/sensu-server', 'restart'])
+            if subprocess.call('cd /etc/sensu/conf.d; git pull;', shell=True):
+                raise Exception
+            if subprocess.call('/etc/init.d/sensu-api restart', shell=True):
+                raise Exception
+            if subprocess.Popen('/etc/init.d/sensu-server restart', shell=True):
+                raise Exception
         except Exception:
             resp.result = falcon.HTTP_500
-
