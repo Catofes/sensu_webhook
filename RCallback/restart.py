@@ -20,4 +20,4 @@ class RRestart:
             if subprocess.Popen('/etc/init.d/sensu-server restart', shell=True):
                 raise Exception
         except Exception:
-            resp.result = falcon.HTTP_500
+            resp.status = falcon.HTTP_500

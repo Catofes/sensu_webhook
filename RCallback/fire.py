@@ -19,7 +19,7 @@ class RFire:
             response = urllib2.urlopen(request)
             response_data = response.read()
             if response.code != 200:
-                resp.result = falcon.HTTP_500
+                resp.status = falcon.HTTP_500
                 return
         except Exception:
-            resp.result = falcon.HTTP_500
+            resp.status = falcon.HTTP_500
