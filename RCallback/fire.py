@@ -15,10 +15,9 @@ class RFire:
             raise RUtils.RError(2)
         try:
             data = json.dumps({'check': event})
-            request = urllib2.Request('http://127.0.0.1/request', data)
+            request = urllib2.Request('http://127.0.0.1:4567/request', data)
             response = urllib2.urlopen(request)
-            response_data = response.read()
-            if response.code != 200:
+            if response.code != 202:
                 resp.status = falcon.HTTP_500
                 return
         except Exception:
